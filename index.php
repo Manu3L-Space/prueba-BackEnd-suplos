@@ -37,6 +37,21 @@ $inmuebles = json_decode($datos, true);
             <p><label for="selectCiudad">Ciudad:</label><br></p>
             <select name="ciudad" id="selectCiudad">
               <option value="" selected>Elige una ciudad</option>
+              <!-- Imprimimos las ciudades -->
+              <?php
+              // Arreglamos el array con ciudades unicas
+              for ($i = 0; $i <= 1; $i++) {
+                foreach ($inmuebles as $ciudad) {
+                  $ciudades[] = $ciudad["Ciudad"];
+                }
+              }
+              $ciudades = array_unique($ciudades);
+              // Imprimimo las cidades en el select
+              foreach ($ciudades as $ciudad) {
+                echo "" ?>
+                <option value="<?php echo $ciudad ?>"><?php echo $ciudad ?></option>
+              <?php } ?>
+              <!-- Fin de las ciudades -->
             </select>
           </div>
           <div class="filtroTipo input-field">
@@ -44,6 +59,21 @@ $inmuebles = json_decode($datos, true);
             <br>
             <select name="tipo" id="selectTipo">
               <option value="">Elige un tipo</option>
+              <!-- Imprimimos las tipos -->
+              <?php
+              // Arreglamos el array con tipos unicos
+              for ($i = 0; $i <= 1; $i++) {
+                foreach ($inmuebles as $tipo) {
+                  $tipos[] = $tipo["Tipo"];
+                }
+              }
+              $tipos = array_unique($tipos);
+              // Imprimimo los tipos en el select
+              foreach ($tipos as $tipo) {
+                echo "" ?>
+                <option value="<?php echo $tipo ?>"><?php echo $tipo ?></option>
+              <?php } ?>
+              <!-- Fin de los tipos -->
             </select>
           </div>
           <div class="filtroPrecio">
