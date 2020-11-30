@@ -1,4 +1,5 @@
 <?php
+// Este es el archivo con el que vemos los bienes guardados
 require 'crud/ver.php';
 // Leemos y traemos los datos del .json
 $datos = file_get_contents("./data-1.json");
