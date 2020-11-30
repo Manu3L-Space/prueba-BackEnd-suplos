@@ -28,7 +28,7 @@ $inmuebles = json_decode($datos, true);
       <h1>Bienes Intelcost</h1>
     </div>
     <div class="colFiltros">
-      <form action="#" method="post" id="formulario">
+      <form action="" method="post" id="formulario">
         <div class="filtrosContenido">
           <div class="tituloFiltros">
             <h5>Filtros</h5>
@@ -81,7 +81,7 @@ $inmuebles = json_decode($datos, true);
             <input type="text" id="rangoPrecio" name="precio" value="" />
           </div>
           <div class="botonField">
-            <input type="submit" class="btn white" value="Buscar" id="submitButton">
+            <input type="button" class="btn white" value="Buscar" id="submitButton" onclick="obtenerDatos();">
           </div>
         </div>
       </form>
@@ -94,16 +94,16 @@ $inmuebles = json_decode($datos, true);
       <div id="tabs-1">
         <div class="colContenido" id="divResultadosBusqueda">
           <div class="tituloContenido card" style="justify-content: center;">
-            <h5>Resultados de la búsqueda:</h5>
+            <h5>Resultados de la búsqueda: <div id="numResultados"></div></h5>
             <div class="divider">
             </div>
             <!-- Estilo de la tarjeta agregado -->
             <div class="tarjeta">
-              <!-- Agregamos los datos del .json -->
-              <?php
-              foreach ($inmuebles as $inmueble) {
-                echo "" ?>
-                <div class="row">
+              <div class="row">
+                <!-- Agregamos los datos del .json -->
+                <?php
+                foreach ($inmuebles as $inmueble) {
+                  echo "" ?>
                   <div id="<?php echo $inmueble["Id"] ?>">
                     <div class="col s3 imagen">
                       <img src="./img/home.jpg" width="100px">
@@ -115,15 +115,21 @@ $inmuebles = json_decode($datos, true);
                       Codigo_Postal: <?php echo $inmueble["Codigo_Postal"] ?><br>
                       Tipo: <?php echo $inmueble["Tipo"] ?><br>
                       Precio: <?php echo $inmueble["Precio"] ?><br>
+                      <a href=""></a>
                     </div>
                   </div>
-                </div>
-                <hr>
-              <?php
-              }
-              ?>
+                  <hr>
+                <?php
+                }
+                ?>
+              </div>
             </div>
             <!-- Final de datos .json -->
+            <!-- Mostrando datos de busqueda -->
+            <div id="busqueda">
+              <!-- Se insertan los datos desde js -->
+            </div>
+            <!-- Final de datos de busqueda -->
           </div>
         </div>
       </div>
