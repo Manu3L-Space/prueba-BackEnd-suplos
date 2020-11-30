@@ -40,15 +40,22 @@ function traerDatos(ciudadForm, tipoForm) {
                             Codigo_Postal: ${dato.Codigo_Postal}<br>
                             Tipo: ${dato.Tipo}<br>
                             Precio: ${dato.Precio}<br>
+                            <form action="./crud/agregar.php" method="post">
+                                <input style="display: none;" type="text" name="Id_json" id="Id_json" value="${dato.Id}">
+                                <input style="display: none;" type="text" name="Direccion" id="Direccion" value="${dato.Direccion}">
+                                <input style="display: none;" type="text" name="Ciudad" id="Ciudad" value="${dato.Ciudad}">
+                                <input style="display: none;" type="text" name="Telefono" id="Telefono" value="${dato.Telefono}">
+                                <input style="display: none;" type="text" name="Codigo_Postal" id="Codigo_Postal" value="${dato.Codigo_Postal}">
+                                <input style="display: none;" type="text" name="Tipo" id="Tipo" value="${dato.Tipo}">
+                                <input style="display: none;" type="text" name="Precio" id="Precio" value="${dato.Precio}">
+                                <input type="submit" value="Guardar">
+                            </form>
                         </div>
                     </div>
                     <hr>`
                     }
                 }
                 numResultados.innerHTML = i;
-                if (dato.Tipo === tipoForm) {
-                    busqueda.innerHTML += `<br> ${dato.Tipo}`;
-                }
             }
         }
     }
