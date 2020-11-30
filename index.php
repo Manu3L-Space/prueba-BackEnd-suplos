@@ -1,5 +1,5 @@
 <?php
-require 'conexion/conx.php';
+require 'crud/ver.php';
 // Leemos y traemos los datos del .json
 $datos = file_get_contents("./data-1.json");
 $inmuebles = json_decode($datos, true);
@@ -154,28 +154,22 @@ $inmuebles = json_decode($datos, true);
             <div class="tarjeta">
               <div class="row">
                 <?php
-                foreach ($inmuebles as $inmueble) {
+                foreach ($resultados as $resultado) {
                   echo "" ?>
-                  <div id="<?php echo $inmueble["Id"] ?>">
+                  <div id="<?php echo $resultado["id"] ?>">
                     <div class="col s3 imagen">
                       <img src="./img/home.jpg" width="100px">
                     </div>
                     <div class="col s9">
-                      Direccion: <?php echo $inmueble["Direccion"] ?><br>
-                      Ciudad: <?php echo $inmueble["Ciudad"] ?><br>
-                      Telefono: <?php echo $inmueble["Telefono"] ?><br>
-                      Codigo_Postal: <?php echo $inmueble["Codigo_Postal"] ?><br>
-                      Tipo: <?php echo $inmueble["Tipo"] ?><br>
-                      Precio: <?php echo $inmueble["Precio"] ?><br>
-                      <form action="./crud/agregar.php" method="post">
-                        <input style="display: none;" type="text" name="Id_json" id="Id_json" value="<?php echo $inmueble["Id"] ?>">
-                        <input style="display: none;" type="text" name="Direccion" id="Direccion" value="<?php echo $inmueble["Direccion"] ?>">
-                        <input style="display: none;" type="text" name="Ciudad" id="Ciudad" value="<?php echo $inmueble["Ciudad"] ?>">
-                        <input style="display: none;" type="text" name="Telefono" id="Telefono" value="<?php echo $inmueble["Telefono"] ?>">
-                        <input style="display: none;" type="text" name="Codigo_Postal" id="Codigo_Postal" value="<?php echo $inmueble["Codigo_Postal"] ?>">
-                        <input style="display: none;" type="text" name="Tipo" id="Tipo" value="<?php echo $inmueble["Tipo"] ?>">
-                        <input style="display: none;" type="text" name="Precio" id="Precio" value="<?php echo $inmueble["Precio"] ?>">
-                        <input type="submit" value="Guardar">
+                      Direccion: <?php echo $resultado["direccion"] ?><br>
+                      Ciudad: <?php echo $resultado["ciudad"] ?><br>
+                      Telefono: <?php echo $resultado["telefono"] ?><br>
+                      Codigo_Postal: <?php echo $resultado["cod_post"] ?><br>
+                      Tipo: <?php echo $resultado["tipo"] ?><br>
+                      Precio: <?php echo $resultado["precio"] ?><br>
+                      <form action="./crud/eliminar.php" method="post">
+                        <input style="display: none;" type="num" name="id" id="id" value="<?php echo $resultado["id"] ?>">
+                        <input type="submit" value="Eliminar">
                       </form>
                     </div>
                   </div>
