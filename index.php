@@ -1,4 +1,5 @@
 <?php
+require 'conexion/conx.php';
 // Leemos y traemos los datos del .json
 $datos = file_get_contents("./data-1.json");
 $inmuebles = json_decode($datos, true);
@@ -94,7 +95,8 @@ $inmuebles = json_decode($datos, true);
       <div id="tabs-1">
         <div class="colContenido" id="divResultadosBusqueda">
           <div class="tituloContenido card" style="justify-content: center;">
-            <h5>Resultados de la búsqueda: <div id="numResultados"></div></h5>
+            <h5>Resultados de la búsqueda: <div id="numResultados"></div>
+            </h5>
             <div class="divider">
             </div>
             <!-- Estilo de la tarjeta agregado -->
@@ -115,7 +117,16 @@ $inmuebles = json_decode($datos, true);
                       Codigo_Postal: <?php echo $inmueble["Codigo_Postal"] ?><br>
                       Tipo: <?php echo $inmueble["Tipo"] ?><br>
                       Precio: <?php echo $inmueble["Precio"] ?><br>
-                      <a href=""></a>
+                      <form action="./crud/agregar.php" method="post">
+                        <input style="display: none;" type="text" name="Id_json" id="Id_json" value="<?php echo $inmueble["Id"] ?>">
+                        <input style="display: none;" type="text" name="Direccion" id="Direccion" value="<?php echo $inmueble["Direccion"] ?>">
+                        <input style="display: none;" type="text" name="Ciudad" id="Ciudad" value="<?php echo $inmueble["Ciudad"] ?>">
+                        <input style="display: none;" type="text" name="Telefono" id="Telefono" value="<?php echo $inmueble["Telefono"] ?>">
+                        <input style="display: none;" type="text" name="Codigo_Postal" id="Codigo_Postal" value="<?php echo $inmueble["Codigo_Postal"] ?>">
+                        <input style="display: none;" type="text" name="Tipo" id="Tipo" value="<?php echo $inmueble["Tipo"] ?>">
+                        <input style="display: none;" type="text" name="Precio" id="Precio" value="<?php echo $inmueble["Precio"] ?>">
+                        <input type="submit" value="Guardar">
+                      </form>
                     </div>
                   </div>
                   <hr>
@@ -139,6 +150,42 @@ $inmuebles = json_decode($datos, true);
           <div class="tituloContenido card" style="justify-content: center;">
             <h5>Bienes guardados:</h5>
             <div class="divider"></div>
+            <!-- Agregamos datos desde la BD  -->
+            <div class="tarjeta">
+              <div class="row">
+                <?php
+                foreach ($inmuebles as $inmueble) {
+                  echo "" ?>
+                  <div id="<?php echo $inmueble["Id"] ?>">
+                    <div class="col s3 imagen">
+                      <img src="./img/home.jpg" width="100px">
+                    </div>
+                    <div class="col s9">
+                      Direccion: <?php echo $inmueble["Direccion"] ?><br>
+                      Ciudad: <?php echo $inmueble["Ciudad"] ?><br>
+                      Telefono: <?php echo $inmueble["Telefono"] ?><br>
+                      Codigo_Postal: <?php echo $inmueble["Codigo_Postal"] ?><br>
+                      Tipo: <?php echo $inmueble["Tipo"] ?><br>
+                      Precio: <?php echo $inmueble["Precio"] ?><br>
+                      <form action="./crud/agregar.php" method="post">
+                        <input style="display: none;" type="text" name="Id_json" id="Id_json" value="<?php echo $inmueble["Id"] ?>">
+                        <input style="display: none;" type="text" name="Direccion" id="Direccion" value="<?php echo $inmueble["Direccion"] ?>">
+                        <input style="display: none;" type="text" name="Ciudad" id="Ciudad" value="<?php echo $inmueble["Ciudad"] ?>">
+                        <input style="display: none;" type="text" name="Telefono" id="Telefono" value="<?php echo $inmueble["Telefono"] ?>">
+                        <input style="display: none;" type="text" name="Codigo_Postal" id="Codigo_Postal" value="<?php echo $inmueble["Codigo_Postal"] ?>">
+                        <input style="display: none;" type="text" name="Tipo" id="Tipo" value="<?php echo $inmueble["Tipo"] ?>">
+                        <input style="display: none;" type="text" name="Precio" id="Precio" value="<?php echo $inmueble["Precio"] ?>">
+                        <input type="submit" value="Guardar">
+                      </form>
+                    </div>
+                  </div>
+                  <hr>
+                <?php
+                }
+                ?>
+              </div>
+            </div>
+            <!-- Final de datos BD -->
           </div>
         </div>
       </div>
